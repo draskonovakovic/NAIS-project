@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  eureka-server:
+    build:
+      context: ./EurekaService
+      dockerfile: Dockerfile
+    image: eureka-server:latest
+    ports:
+      - "8761:8761"
+
+  gateway-api:
+    build:
+      context: ./GatewayService
+      dockerfile: Dockerfile
+    image: gateway-api:latest
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+    depends_on:
+      - eureka-server
+      - columnar-key-value-service
+    ports:
+      - "9000:9000"
+
+
+  columnar-key-value-service:
+     build:
+       context: ./ColumnarDatabaseService
+       dockerfile: Dockerfile
+     image: columnar-key-value-service:latest
+     depends_on:
+       - cassandradb
+       - eureka-server
+     restart: always
+     environment:
+       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+       SPRING_DATA_CASSANDRA_CONTACT_POINTS: cassandradb
+       SPRING_DATA_CASSANDRA_PORT: 9042
+     ports:
+       - "9050:9050"
+       - "5005:5005" # Debug port mapping
+
+
+  cassandradb:
+    image: cassandra:latest
+    ports:
+      - "9042:9042"
+    volumes:
+      - data:/var/lib/cassandra
+    healthcheck:
+      test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
+      interval: 30s
+      timeout: 10s
+
+  datastax-studio:
+    image: datastax/dse-studio:6.8.4
+    ports:
+      - "9091:9091"
+    environment:
+      DS_LICENSE: accept
+    depends_on:
+      - cassandradb
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
+
+volumes:
+  data:
+  influxdb-storage:
+  grafana_storage: { }
