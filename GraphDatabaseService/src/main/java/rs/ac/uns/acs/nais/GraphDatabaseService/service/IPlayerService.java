@@ -1,5 +1,6 @@
 package rs.ac.uns.acs.nais.GraphDatabaseService.service;
 
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlaysForDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Player;
 
 import java.util.List;
@@ -9,4 +10,6 @@ public interface IPlayerService {
     Player addPlayer(Player player);
     boolean deletePlayer(String email);
     boolean updatePlayer(String emailOld, String emailNew);
+
+    void addPlaysFor(PlaysForDTO playsForDTO);
 }
