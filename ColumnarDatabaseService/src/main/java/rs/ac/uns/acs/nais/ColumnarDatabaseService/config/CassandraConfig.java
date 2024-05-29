@@ -1,9 +1,13 @@
 package rs.ac.uns.acs.nais.ColumnarDatabaseService.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
+import org.springframework.data.cassandra.config.CqlSessionFactoryBean;
 import org.springframework.data.cassandra.config.SchemaAction;
+import org.springframework.data.cassandra.core.CassandraAdminTemplate;
+import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification;
 import org.springframework.data.cassandra.core.cql.keyspace.KeyspaceOption;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
@@ -24,7 +28,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     @Value("${spring.data.cassandra.port}")
     private int PORT;
 
-    @Value("${spring.data.cassandra..schema-action}")
+    @Value("${spring.data.cassandra.schema-action}")
     private String SCHEMA_ACTION;
 
     @Override
@@ -59,5 +63,4 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     public String[] getEntityBasePackages() {
         return new String[] {"rs.ac.uns.acs.nais.ColumnarDatabaseService.entity"};
     }
-
 }
