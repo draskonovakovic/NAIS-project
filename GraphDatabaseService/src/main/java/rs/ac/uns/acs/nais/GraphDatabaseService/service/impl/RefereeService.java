@@ -2,6 +2,7 @@ package rs.ac.uns.acs.nais.GraphDatabaseService.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.RefereedDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Referee;
 import rs.ac.uns.acs.nais.GraphDatabaseService.repository.RefereeRepository;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.IRefereeService;
@@ -45,5 +46,9 @@ public class RefereeService implements IRefereeService {
             return true;
         }
         return false;
+    }
+
+    public void addRefereed(RefereedDTO refereedDTO){
+        refereeRepository.createRefereed(refereedDTO.getRefereeId(), refereedDTO.getMatchId(), refereedDTO.getPoints(), refereedDTO.isRisk());
     }
 }

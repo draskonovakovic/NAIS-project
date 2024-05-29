@@ -5,6 +5,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.RefereedDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Referee;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.impl.RefereeService;
 
@@ -45,5 +46,11 @@ public class RefereeController {
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("addRefereed")
+    public ResponseEntity addRefereed(@RequestBody RefereedDTO refereedDTO) {
+        refereeService.addRefereed(refereedDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

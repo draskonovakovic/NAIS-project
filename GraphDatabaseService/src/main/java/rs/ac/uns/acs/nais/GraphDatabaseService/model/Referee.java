@@ -17,4 +17,6 @@ public class Referee {
     private String name;
     private String surname;
     private Boolean isActive;
+    @Relationship(value = "REFEREED", direction = Relationship.Direction.OUTGOING)
+    private List<Refereed> refereed = new ArrayList<>();
 }
