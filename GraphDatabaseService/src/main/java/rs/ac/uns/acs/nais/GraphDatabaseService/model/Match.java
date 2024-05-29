@@ -21,5 +21,6 @@ public class Match {
     @Relationship(value = "PLAYS_MATCH", direction = Relationship.Direction.OUTGOING)
     private List<PlaysMatch> teams = new ArrayList<>();
 
+    private String email;
     private Boolean isActive;
 }

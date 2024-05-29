@@ -21,5 +21,6 @@ public class Team {
     @Relationship(value = "HAS_PLAYER", direction = Relationship.Direction.OUTGOING)
     private List<HasPlayer> players = new ArrayList<>();
 
+    private String email;
     private Boolean isActive;
 }

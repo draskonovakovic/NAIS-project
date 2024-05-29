@@ -15,5 +15,6 @@ public class Player {
     private Integer height;
     private Integer jerseyNumber;
 
+    private String email;
     private Boolean isActive;
 }
