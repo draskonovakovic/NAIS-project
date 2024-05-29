@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlaysForDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Player;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.impl.PlayerService;
 
@@ -44,5 +45,11 @@ public class PlayerController {
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("addPlaysFor")
+    public ResponseEntity<Player> addPlaysFor(@RequestBody PlaysForDTO playsForDTO){
+        playerService.addPlaysFor(playsForDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

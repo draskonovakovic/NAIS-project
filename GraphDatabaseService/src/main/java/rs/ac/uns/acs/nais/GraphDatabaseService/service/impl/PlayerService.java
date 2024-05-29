@@ -2,6 +2,7 @@ package rs.ac.uns.acs.nais.GraphDatabaseService.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlaysForDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Player;
 import rs.ac.uns.acs.nais.GraphDatabaseService.repository.PlayerRepository;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.IPlayerService;
@@ -45,5 +46,10 @@ public class PlayerService implements IPlayerService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void addPlaysFor(PlaysForDTO playsForDTO) {
+        playerRepository.setPlaysFor(playsForDTO.getPlayerId(), playsForDTO.getTeamId(), playsForDTO.getJerseyNumber());
     }
 }
