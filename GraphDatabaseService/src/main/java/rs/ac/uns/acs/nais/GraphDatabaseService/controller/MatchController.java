@@ -48,9 +48,15 @@ public class MatchController {
 
     @PostMapping("insertList")
     public ResponseEntity<List<Match>> insertList(@RequestBody List<Match> matchList) {
-        for(Match match : matchList) {
+        for (Match match : matchList) {
             matchService.addMatch(match);
         }
         return new ResponseEntity<>(matchList, HttpStatus.CREATED);
+    }
+
+    @PostMapping("addMatches")
+    public ResponseEntity<List<Match>> addMatches(@RequestBody List<Match> matches) {
+        var retVal = matchService.addMatches(matches);
+        return new ResponseEntity<>(retVal, HttpStatus.CREATED);
     }
 }

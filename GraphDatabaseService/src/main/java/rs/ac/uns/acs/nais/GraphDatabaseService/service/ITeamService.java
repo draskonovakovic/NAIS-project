@@ -11,4 +11,5 @@ public interface ITeamService {
     boolean deleteTeam(String email);
     boolean updateTeam(String emailOld, String emailNew);
     void addPlaysMatch(PlaysMatchDTO playsMatchDTO);
+    void addMultiplePlaysMatch(List<PlaysMatchDTO> multiplePlaysMatchDTO);
 }

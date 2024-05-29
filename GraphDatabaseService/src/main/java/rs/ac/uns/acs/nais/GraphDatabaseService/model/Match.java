@@ -17,6 +17,7 @@ public class Match {
 
     private LocalDateTime matchDay;
     private String city;
+    private int attendance;
 
     private Boolean isActive;
 }

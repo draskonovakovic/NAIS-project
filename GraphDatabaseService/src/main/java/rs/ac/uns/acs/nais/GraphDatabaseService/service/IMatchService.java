@@ -9,4 +9,5 @@ public interface IMatchService {
     Match addMatch(Match match);
     boolean deleteMatch(Long id);
     boolean updateMatch(Long id, String cityOld, String cityNew);
+    List<Match> addMatches(List<Match> matches);
 }

@@ -46,5 +46,10 @@ public class MatchService implements IMatchService {
         }
         return false;
     }
-    
+
+    @Override
+    public List<Match> addMatches(List<Match> matches) {
+        return matchRepository.saveAll(matches);
+    }
+
 }

@@ -52,4 +52,10 @@ public class TeamController {
         teamService.addPlaysMatch(playsMatchDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PostMapping("addMultiplePlaysMatch")
+    public ResponseEntity addMultiplePlaysMatch(@RequestBody List<PlaysMatchDTO> multiplePlaysMatchDTO) {
+        teamService.addMultiplePlaysMatch(multiplePlaysMatchDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }
