@@ -29,8 +29,8 @@ public class MatchController {
     }
 
     @DeleteMapping("delete")
-    public ResponseEntity<Match> delete(@RequestParam String matchEmail) {
-        if(matchService.deleteMatch(matchEmail)) {
+    public ResponseEntity<Match> delete(@RequestParam Long id) {
+        if(matchService.deleteMatch(id)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
 
@@ -38,8 +38,8 @@ public class MatchController {
     }
 
     @PutMapping("updateEmail")
-    public ResponseEntity<Match> updateEmail(@RequestParam String oldEmail, @RequestParam String newEmail) {
-        if(matchService.updateMatch(oldEmail, newEmail)) {
+    public ResponseEntity<Match> updateEmail(@RequestParam Long id, @RequestParam String oldCity, @RequestParam String newCity) {
+        if(matchService.updateMatch(id, oldCity, newCity)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
 

@@ -26,8 +26,8 @@ public class MatchService implements IMatchService {
     }
 
     @Override
-    public boolean deleteMatch(String email) {
-        var matchFromDb = matchRepository.findByEmail(email);
+    public boolean deleteMatch(Long id) {
+        var matchFromDb = matchRepository.findById(id).get();
         if(matchFromDb != null){
             matchFromDb.setIsActive(false);
             matchRepository.save(matchFromDb);
@@ -37,10 +37,10 @@ public class MatchService implements IMatchService {
     }
 
     @Override
-    public boolean updateMatch(String emailOld, String emailNew) {
-        var matchFromDb = matchRepository.findByEmail(emailOld);
+    public boolean updateMatch(Long id, String emailOld, String emailNew) {
+        var matchFromDb = matchRepository.findById(id).get();
         if(matchFromDb != null){
-            matchFromDb.setEmail(emailNew);
+            matchFromDb.setCity(emailNew);
             matchRepository.save(matchFromDb);
             return true;
         }

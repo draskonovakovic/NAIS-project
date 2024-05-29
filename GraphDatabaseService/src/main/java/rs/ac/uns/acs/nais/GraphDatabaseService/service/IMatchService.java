@@ -7,6 +7,6 @@ import java.util.List;
 public interface IMatchService {
     List<Match> findAll();
     Match addMatch(Match match);
-    boolean deleteMatch(String email);
-    boolean updateMatch(String emailOld, String emailNew);
+    boolean deleteMatch(Long id);
+    boolean updateMatch(Long id, String cityOld, String cityNew);
 }
