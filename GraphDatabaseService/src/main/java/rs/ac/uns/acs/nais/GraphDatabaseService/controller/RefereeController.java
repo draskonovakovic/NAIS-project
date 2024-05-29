@@ -5,6 +5,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.ExperienceRequest;
 import rs.ac.uns.acs.nais.GraphDatabaseService.dto.RefereedDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Referee;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.impl.RefereeService;
@@ -52,5 +53,27 @@ public class RefereeController {
     public ResponseEntity addRefereed(@RequestBody RefereedDTO refereedDTO) {
         refereeService.addRefereed(refereedDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("recommendRefereesByExperience")
+    public ResponseEntity<List<Referee>> recommendRefereesByExperience(@RequestBody ExperienceRequest request) {
+        var retVal = refereeService.recommendRefereesByExperience(request);
+        return new ResponseEntity<>(retVal, HttpStatus.OK);
+    }
+
+    @PostMapping("insertList")
+    public ResponseEntity<List<Referee>> insertList(@RequestBody List<Referee> refereeList) {
+        for(Referee referee: refereeList) {
+            refereeService.addReferee(referee);
+        }
+        return new ResponseEntity<>(refereeList, HttpStatus.CREATED);
+    }
+
+    @PostMapping("insertListRefereed")
+    public ResponseEntity<List<RefereedDTO>> insertListRefereed(@RequestBody List<RefereedDTO> request) {
+        for(RefereedDTO refereedDTO: request) {
+            refereeService.addRefereed(refereedDTO);
+        }
+        return new ResponseEntity<>(request, HttpStatus.CREATED);
     }
 }

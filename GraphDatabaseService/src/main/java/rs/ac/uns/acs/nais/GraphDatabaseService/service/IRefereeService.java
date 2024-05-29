@@ -1,5 +1,6 @@
 package rs.ac.uns.acs.nais.GraphDatabaseService.service;
 
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.ExperienceRequest;
 import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlaysMatchDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.dto.RefereedDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Referee;
@@ -12,4 +13,5 @@ public interface IRefereeService {
     boolean deleteReferee(String email);
     boolean updateReferee(String emailOld, String emailNew);
     void addRefereed(RefereedDTO refereedDTO);
+    List<Referee> recommendRefereesByExperience(ExperienceRequest request);
 }
