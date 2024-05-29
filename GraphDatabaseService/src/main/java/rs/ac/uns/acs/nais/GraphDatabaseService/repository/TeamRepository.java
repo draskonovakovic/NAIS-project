@@ -7,9 +7,9 @@ import rs.ac.uns.acs.nais.GraphDatabaseService.model.Team;
 public interface TeamRepository extends Neo4jRepository<Team, Long> {
     Team findByEmail(String email);
 
-    @Query("MATCH (t:Team {idOriginal: $teamId}) " +
-            "            MATCH (m:Match {idOriginal: $matchId}) " +
-            "            CREATE (t)-[playsMatch:PLAYSMATCH]->(m) " +
+    @Query("MATCH (t:Team {id: $teamId}) " +
+            "            MATCH (m:Match {id: $matchId}) " +
+            "            CREATE (t)-[playsMatch:PLAYS_MATCH]->(m) " +
             "            SET playsMatch.teamSide = $teamSide")
     void createPlay(Long teamId, Long matchId, String teamSide);
 }
