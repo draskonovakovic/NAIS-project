@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlaysMatchDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Team;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.impl.TeamService;
 
@@ -44,5 +45,11 @@ public class TeamController {
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("addPlaysMatch")
+    public ResponseEntity addPlaysMatch(@RequestBody PlaysMatchDTO playsMatchDTO) {
+        teamService.addPlaysMatch(playsMatchDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

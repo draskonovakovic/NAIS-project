@@ -2,6 +2,7 @@ package rs.ac.uns.acs.nais.GraphDatabaseService.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlaysMatchDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Team;
 import rs.ac.uns.acs.nais.GraphDatabaseService.repository.TeamRepository;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.ITeamService;
@@ -45,5 +46,10 @@ public class TeamService implements ITeamService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void addPlaysMatch(PlaysMatchDTO playsMatchDTO) {
+        teamRepository.createPlay(playsMatchDTO.getTeamId(), playsMatchDTO.getMatchId(), playsMatchDTO.getTeamSide());
     }
 }

@@ -10,5 +10,6 @@ public class PlaysMatch {
     @RelationshipId
     private Long id;
     @TargetNode
-    private Team team;
+    private Match match;
+    private String teamSide;
 }
