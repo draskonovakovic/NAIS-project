@@ -1,5 +1,4 @@
 package rs.ac.uns.acs.nais.ColumnarDatabaseService.service;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +50,9 @@ public class PlayerService {
 
     public List<Player> filterPlayersByHeightWeightAndBirthday(){
         return playerRepository.filterPlayersByHeightWeightAndBirthday();
+    }
+
+    public List<Player> getPlayersFromUSA(){
+        return playerRepository.getPlayersFromUSA();
     }
 }

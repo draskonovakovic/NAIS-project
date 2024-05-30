@@ -21,4 +21,8 @@ public interface TeamRepository extends CassandraRepository<Team, Long> {
     @Query("SELECT * from teams" +
             " where country = 'USA' allow filtering")
     List<Team> getTeamsFromUSA();
+
+    @Query("SELECT id from teams" +
+            " where country = 'USA' allow filtering")
+    List<Long> getTeamsFromUSAIds();
 }

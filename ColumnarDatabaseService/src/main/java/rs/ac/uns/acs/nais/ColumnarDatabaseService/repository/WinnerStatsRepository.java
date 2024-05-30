@@ -11,6 +11,7 @@ public interface WinnerStatsRepository extends CassandraRepository<WinnerStats, 
     //drugi upit
     @Query("SELECT winner_id, avg(home_team_score) as avgScore, avg(home_team_rebounds) as avgRebounds, avg(home_team_turnovers) as avgTurnovers" +
             " from match_results" +
-            " where winner_id in :homeTeams group by winner_id allow filtering")
-    List<WinnerStats> getWinnerStats(@Param("homeTeams") List<Long> homeTeams);
+            " where winner_id in :teamsIds group by winner_id allow filtering")
+    List<WinnerStats> getWinnerStats(@Param("teamsIds") List<Long> teamsIds);
+
 }

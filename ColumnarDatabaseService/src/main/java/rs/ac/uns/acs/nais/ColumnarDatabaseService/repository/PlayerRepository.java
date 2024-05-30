@@ -13,4 +13,8 @@ public interface PlayerRepository extends CassandraRepository<Player, Long> {
     //prost upit 1
     @Query("SELECT * from players where height > 6.5 and weight > 210 and birthday > '1992-01-01' allow filtering")
     List<Player> filterPlayersByHeightWeightAndBirthday();
+
+    @Query("SELECT * from players" +
+            " where country = 'USA' allow filtering")
+    List<Player> getPlayersFromUSA();
 }

@@ -56,4 +56,10 @@ public class PlayerController {
         List<Player> teams = playerService.filterPlayersByHeightWeightAndBirthday();
         return ResponseEntity.ok(teams);
     }
+
+    @GetMapping("usa")
+    public ResponseEntity<List<Player>> getPlayersFromUSA() {
+        List<Player> teams = playerService.getPlayersFromUSA();
+        return ResponseEntity.ok(teams);
+    }
 }

@@ -14,4 +14,6 @@ public interface MatchResultRepository extends CassandraRepository<MatchResult, 
     @Query("SELECT player_of_game_id FROM match_results WHERE home_team_score <= 110 allow filtering")
     List<Long> getPlayerOfGameIdsForLowScoringGames();
 
+    @Query("SELECT player_of_game_id FROM match_results")
+    List<Long> getPlayerOfGameIds();
 }
