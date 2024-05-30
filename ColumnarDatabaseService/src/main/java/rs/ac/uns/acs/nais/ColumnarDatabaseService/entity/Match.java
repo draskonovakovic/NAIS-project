@@ -3,6 +3,7 @@ package rs.ac.uns.acs.nais.ColumnarDatabaseService.entity;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
@@ -16,27 +17,28 @@ import java.util.UUID;
 @Table("matches")
 public class Match {
 
-    @PrimaryKeyColumn(name = "id", type = PrimaryKeyType.PARTITIONED)
-    private UUID id;
+    @PrimaryKeyColumn(name = "id", ordinal = 0, ordering = Ordering.ASCENDING)
+    private long id;
 
-    @Column("match_date_time")
+    @PrimaryKeyColumn(name = "match_date_time", ordinal = 1, ordering = Ordering.DESCENDING)
     private LocalDateTime matchDateTime;
 
     @Column("home_team_id")
-    private UUID homeTeamId;
+    private long homeTeamId;
 
     @Column("away_team_id")
-    private UUID awayTeamId;
+    private long awayTeamId;
 
-    @Column("city")
+    @PrimaryKeyColumn(name = "city", type = PrimaryKeyType.PARTITIONED)
     private String city;
 
     @Column("match_result_id")
-    private String matchResultId;
+    private long matchResultId;
 
     @Column("referee_id")
-    private String refereeId;
-    public UUID getId() {
+    private long refereeId;
+
+    public long getId() {
         return id;
     }
 
@@ -44,11 +46,11 @@ public class Match {
         return matchDateTime;
     }
 
-    public UUID getHomeTeamId() {
+    public long getHomeTeamId() {
         return homeTeamId;
     }
 
-    public UUID getAwayTeamId() {
+    public long getAwayTeamId() {
         return awayTeamId;
     }
 
@@ -56,15 +58,15 @@ public class Match {
         return city;
     }
 
-    public String getMatchResultId() {
+    public long getMatchResultId() {
         return matchResultId;
     }
 
-    public String getRefereeId() {
+    public long getRefereeId() {
         return refereeId;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -72,11 +74,11 @@ public class Match {
         this.matchDateTime = matchDateTime;
     }
 
-    public void setHomeTeamId(UUID homeTeamId) {
+    public void setHomeTeamId(long homeTeamId) {
         this.homeTeamId = homeTeamId;
     }
 
-    public void setAwayTeamId(UUID awayTeamId) {
+    public void setAwayTeamId(long awayTeamId) {
         this.awayTeamId = awayTeamId;
     }
 
@@ -84,11 +86,11 @@ public class Match {
         this.city = city;
     }
 
-    public void setMatchResultId(String matchResultId) {
+    public void setMatchResultId(long matchResultId) {
         this.matchResultId = matchResultId;
     }
 
-    public void setRefereeId(String refereeId) {
+    public void setRefereeId(long refereeId) {
         this.refereeId = refereeId;
     }
 }

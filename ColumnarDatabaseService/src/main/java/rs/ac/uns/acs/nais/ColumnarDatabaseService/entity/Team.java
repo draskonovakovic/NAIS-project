@@ -2,6 +2,7 @@ package rs.ac.uns.acs.nais.ColumnarDatabaseService.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
@@ -15,9 +16,9 @@ import java.util.UUID;
 public class Team {
 
     @PrimaryKeyColumn(name = "id", type = PrimaryKeyType.PARTITIONED)
-    private UUID id;
+    private long id;
 
-    @Column("name")
+    @PrimaryKeyColumn(name = "name", ordinal = 0, ordering = Ordering.ASCENDING)
     private String name;
 
     @Column("city")
@@ -36,13 +37,13 @@ public class Team {
     private String phoneNumber;
 
     @Column("players_ids")
-    private List<UUID> playersIds;
+    private List<Long> playersIds;
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -94,11 +95,11 @@ public class Team {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<UUID> getPlayersIds() {
+    public List<Long> getPlayersIds() {
         return playersIds;
     }
 
-    public void setPlayersIds(List<UUID> playersIds) {
+    public void setPlayersIds(List<Long> playersIds) {
         this.playersIds = playersIds;
     }
 }

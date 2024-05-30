@@ -10,4 +10,3 @@ public enum PlayerStatus {
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     INJURED
 }
-
