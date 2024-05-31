@@ -1,12 +1,15 @@
 package rs.ac.uns.acs.nais.GraphDatabaseService.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Match;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.impl.MatchService;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -58,5 +61,21 @@ public class MatchController {
     public ResponseEntity<List<Match>> addMatches(@RequestBody List<Match> matches) {
         var retVal = matchService.addMatches(matches);
         return new ResponseEntity<>(retVal, HttpStatus.CREATED);
+    }
+    
+    @GetMapping(value = "generatePdf", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> generatePdf(@RequestParam Long matchId) throws IOException {
+        try {
+            byte[] pdfContent = matchService.exportPdf(matchId);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDispositionFormData("attachment", "refereeRecommendation.pdf");
+
+            return ResponseEntity.ok().headers(headers).body(pdfContent);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 }

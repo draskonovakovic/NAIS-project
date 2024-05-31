@@ -58,4 +58,11 @@ public class RefereeService implements IRefereeService {
         return refereeRepository.recommendRefereeByExperience(request.getMatchId(), request.getMatchDay());
 
     }
+
+    @Override
+    public List<Referee> recommendRefereesByAvgPoints(ExperienceRequest request) {
+        var avgPoints = refereeRepository.avgPoints(request.getMatchId(), request.getMatchDay());
+        System.out.println(avgPoints);
+        return refereeRepository.recommendRefereesByAvgPoints(request.getMatchId(), request.getMatchDay(), avgPoints);
+    }
 }

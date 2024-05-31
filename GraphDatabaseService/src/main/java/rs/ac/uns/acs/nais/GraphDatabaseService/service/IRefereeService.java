@@ -14,4 +14,5 @@ public interface IRefereeService {
     boolean updateReferee(String emailOld, String emailNew);
     void addRefereed(RefereedDTO refereedDTO);
     List<Referee> recommendRefereesByExperience(ExperienceRequest request);
+    List<Referee> recommendRefereesByAvgPoints(ExperienceRequest request);
 }

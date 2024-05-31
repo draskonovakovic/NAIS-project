@@ -26,4 +26,23 @@ public interface RefereeRepository extends Neo4jRepository<Referee, Long> {
             "ORDER BY experience DESC " +
             "LIMIT 4")
     List<Referee> recommendRefereeByExperience(Long matchId, LocalDateTime matchDay);
+
+    @Query("MATCH (currentMatch:Match {id: $matchId, matchDay: $matchDay}) " +
+            "MATCH (referee:Referee)-[rel:REFEREED]->(previousMatch:Match) " +
+            "WHERE previousMatch.matchDay < currentMatch.matchDay " +
+            "             AND NOT (referee)-[:REFEREED]->(currentMatch) " +
+            "WITH referee, SUM(rel.points) AS totalPoints " +
+            "WHERE totalPoints > $avgPoints " +
+            "RETURN referee " +
+            "ORDER BY totalPoints DESC " +
+            "LIMIT 4")
+    List<Referee> recommendRefereesByAvgPoints(Long matchId, LocalDateTime matchDay, double avgPoints);
+
+    @Query("MATCH (currentMatch:Match {id: $matchId, matchDay: $matchDay}) " +
+            "MATCH (otherReferee:Referee)-[otherRel:REFEREED]->(otherPreviousMatch:Match) " +
+            "WHERE otherPreviousMatch.matchDay < currentMatch.matchDay " +
+            "  AND NOT (otherReferee)-[:REFEREED]->(currentMatch) " +
+            "WITH COALESCE(AVG(otherRel.points), 0) AS avgPoints " +
+            "RETURN avgPoints ")
+    double avgPoints(Long matchId, LocalDateTime matchDay);
 }

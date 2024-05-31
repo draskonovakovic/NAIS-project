@@ -3,6 +3,7 @@ package rs.ac.uns.acs.nais.GraphDatabaseService.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.acs.nais.GraphDatabaseService.dto.ExperienceRequest;
@@ -10,6 +11,7 @@ import rs.ac.uns.acs.nais.GraphDatabaseService.dto.RefereedDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Referee;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.impl.RefereeService;
 
+import java.sql.Ref;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -58,6 +60,12 @@ public class RefereeController {
     @PostMapping("recommendRefereesByExperience")
     public ResponseEntity<List<Referee>> recommendRefereesByExperience(@RequestBody ExperienceRequest request) {
         var retVal = refereeService.recommendRefereesByExperience(request);
+        return new ResponseEntity<>(retVal, HttpStatus.OK);
+    }
+
+    @PostMapping("recommendByAvgPoints")
+    public ResponseEntity<List<Referee>> recommendByAvgPoints(@RequestBody ExperienceRequest request) {
+        var retVal = refereeService.recommendRefereesByAvgPoints(request);
         return new ResponseEntity<>(retVal, HttpStatus.OK);
     }
 
