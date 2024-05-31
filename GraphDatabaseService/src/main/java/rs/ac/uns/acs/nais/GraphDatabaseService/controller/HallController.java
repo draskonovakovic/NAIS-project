@@ -30,4 +30,10 @@ public class HallController {
     public ResponseEntity<List<Hall>> getRecommendationsForTeam(@RequestParam Long teamId){
         return new ResponseEntity<>(hallService.recommendHallsForTeam(teamId), HttpStatus.OK);
     }
+
+    @GetMapping("deleteAll")
+    public ResponseEntity deleteAll(){
+        hallService.deleteAll();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

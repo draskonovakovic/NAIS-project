@@ -50,13 +50,13 @@ public class TeamService implements ITeamService {
 
     @Override
     public void addPlaysMatch(PlaysMatchDTO playsMatchDTO) {
-        teamRepository.createPlay(playsMatchDTO.getTeamId(), playsMatchDTO.getMatchId(), playsMatchDTO.getTeamSide());
+        teamRepository.createPlay(playsMatchDTO.getTeamId(), playsMatchDTO.getMatchId(), playsMatchDTO.getTeamSide(), playsMatchDTO.getWon());
     }
 
     @Override
     public void addMultiplePlaysMatch(List<PlaysMatchDTO> multiplePlaysMatchDTO) {
         for(var playsMatchDTO: multiplePlaysMatchDTO){
-            teamRepository.createPlay(playsMatchDTO.getTeamId(), playsMatchDTO.getMatchId(), playsMatchDTO.getTeamSide());
+            teamRepository.createPlay(playsMatchDTO.getTeamId(), playsMatchDTO.getMatchId(), playsMatchDTO.getTeamSide(), playsMatchDTO.getWon());
         }
     }
 }

@@ -9,5 +9,6 @@ public interface IHallService {
     List<Hall> getAll();
 
     List<Hall> recommendHallsForTeam(Long teamId);
+    void deleteAll();
 
 }

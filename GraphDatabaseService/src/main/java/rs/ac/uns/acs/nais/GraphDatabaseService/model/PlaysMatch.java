@@ -12,4 +12,5 @@ public class PlaysMatch {
     @TargetNode
     private Match match;
     private String teamSide;
+    private boolean won;
 }

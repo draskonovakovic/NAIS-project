@@ -28,4 +28,9 @@ public class HallService implements IHallService {
     public List<Hall> recommendHallsForTeam(Long teamId) {
         return hallRepository.recommendHallsForTeam(teamId);
     }
+
+    @Override
+    public void deleteAll() {
+        hallRepository.deleteAll();
+    }
 }

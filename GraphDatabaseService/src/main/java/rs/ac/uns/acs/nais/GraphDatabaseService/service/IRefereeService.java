@@ -15,4 +15,5 @@ public interface IRefereeService {
     void addRefereed(RefereedDTO refereedDTO);
     List<Referee> recommendRefereesByExperience(ExperienceRequest request);
     List<Referee> recommendRefereesByAvgPoints(ExperienceRequest request);
+    List<Referee> recommendRefereeForTeamByMatchesWon(Long teamId);
 }

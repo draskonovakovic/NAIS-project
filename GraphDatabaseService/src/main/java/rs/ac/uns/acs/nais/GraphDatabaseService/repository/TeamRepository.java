@@ -10,6 +10,6 @@ public interface TeamRepository extends Neo4jRepository<Team, Long> {
     @Query("MATCH (t:Team {id: $teamId}) " +
             "            MATCH (m:Match {id: $matchId}) " +
             "            CREATE (t)-[playsMatch:PLAYS_MATCH]->(m) " +
-            "            SET playsMatch.teamSide = $teamSide")
-    void createPlay(Long teamId, Long matchId, String teamSide);
+            "            SET playsMatch.teamSide = $teamSide, playsMatch.won = $won")
+    void createPlay(Long teamId, Long matchId, String teamSide, Boolean won);
 }

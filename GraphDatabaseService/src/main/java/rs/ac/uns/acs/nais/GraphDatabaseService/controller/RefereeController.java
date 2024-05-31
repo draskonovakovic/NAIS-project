@@ -84,4 +84,9 @@ public class RefereeController {
         }
         return new ResponseEntity<>(request, HttpStatus.CREATED);
     }
+
+    @GetMapping("recommendRefereeForTeamByMatchesWon")
+    public ResponseEntity<List<Referee>> recommendRefereeForTeamByMatchesWon(@RequestParam Long teamId){
+        return new ResponseEntity<>(refereeService.recommendRefereeForTeamByMatchesWon(teamId), HttpStatus.OK);
+    }
 }

@@ -65,4 +65,9 @@ public class RefereeService implements IRefereeService {
         System.out.println(avgPoints);
         return refereeRepository.recommendRefereesByAvgPoints(request.getMatchId(), request.getMatchDay(), avgPoints);
     }
+
+    @Override
+    public List<Referee> recommendRefereeForTeamByMatchesWon(Long teamId) {
+        return refereeRepository.recommendRefereeForTeamByMatchesWon(teamId);
+    }
 }

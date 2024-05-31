@@ -16,4 +16,7 @@ public interface HallRepository extends Neo4jRepository<Hall, Long> {
             "ORDER BY h.capacity ASC " +
             "LIMIT 3")
     public List<Hall> recommendHallsForTeam(Long teamId);
+
+    @Query("MATCH (n) DETACH DELETE n")
+    public void deleteAll();
 }

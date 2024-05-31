@@ -45,4 +45,12 @@ public interface RefereeRepository extends Neo4jRepository<Referee, Long> {
             "WITH COALESCE(AVG(otherRel.points), 0) AS avgPoints " +
             "RETURN avgPoints ")
     double avgPoints(Long matchId, LocalDateTime matchDay);
+
+    @Query("MATCH (team:Team {id: $teamId})-[plays_match:PLAYS_MATCH {won: true}]->(match:Match)<-[refereed:REFEREED]-(referee:Referee) " +
+            "WHERE refereed.points > 4 " +
+            "WITH referee, COUNT(match) AS win_count " +
+            "RETURN referee " +
+            "ORDER BY win_count DESC " +
+            "LIMIT 4")
+    List<Referee> recommendRefereeForTeamByMatchesWon(Long teamId);
 }

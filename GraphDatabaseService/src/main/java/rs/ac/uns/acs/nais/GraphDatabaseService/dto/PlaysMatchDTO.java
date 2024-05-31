@@ -7,4 +7,5 @@ public class PlaysMatchDTO {
     private Long matchId;
     private Long teamId;
     private String teamSide;
+    private Boolean won;
 }
