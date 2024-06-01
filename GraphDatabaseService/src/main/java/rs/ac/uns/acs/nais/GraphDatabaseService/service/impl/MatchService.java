@@ -94,6 +94,60 @@ public class MatchService implements IMatchService {
         matchData.add(new Chunk("Date: " + matchFromDb.getMatchDay().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH-mm-ss")) + "\n\n", matchDataFont));
         document.add(matchData);
 
+        
+        //TEAMS INFO
+        PdfPTable teamsInfoTable = new PdfPTable(2);
+        teamsInfoTable.setWidthPercentage(100);
+
+        //Team1 name
+        PdfPCell leftNameCell = new PdfPCell(new Paragraph(teams.get(0).getName()));
+        leftNameCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        leftNameCell.setBorder(PdfPCell.NO_BORDER); 
+        teamsInfoTable.addCell(leftNameCell);
+        //Team2 name
+        PdfPCell rightNameCell = new PdfPCell(new Paragraph(teams.get(1).getName()));
+        rightNameCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        rightNameCell.setBorder(PdfPCell.NO_BORDER); 
+        teamsInfoTable.addCell(rightNameCell);
+
+        //Team1 email
+        PdfPCell leftEmailCell = new PdfPCell(new Paragraph("Email: " + teams.get(0).getEmail()));
+        leftEmailCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        leftEmailCell.setBorder(PdfPCell.NO_BORDER);
+        teamsInfoTable.addCell(leftEmailCell);
+        //Team2 email
+        PdfPCell rightEmailCell = new PdfPCell(new Paragraph("Email: " + teams.get(1).getEmail()));
+        rightEmailCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        rightEmailCell.setBorder(PdfPCell.NO_BORDER);
+        teamsInfoTable.addCell(rightEmailCell);
+
+        //Team1 location
+        PdfPCell leftLocationCell = new PdfPCell(new Paragraph("Location: " + teams.get(0).getCity() + ", " + teams.get(0).getCountry()));
+        leftLocationCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        leftLocationCell.setBorder(PdfPCell.NO_BORDER); 
+        teamsInfoTable.addCell(leftLocationCell);
+        //Team2 location
+        PdfPCell rightLocationCell = new PdfPCell(new Paragraph("Location: " + teams.get(1).getCity() + ", " + teams.get(1).getCountry()));
+        rightLocationCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        rightLocationCell.setBorder(PdfPCell.NO_BORDER); 
+        teamsInfoTable.addCell(rightLocationCell);
+
+        //Team1 location
+        PdfPCell leftAttendanceCell = new PdfPCell(new Paragraph("Average attendance at home games: " + avgAttendanceTeam1));
+        leftAttendanceCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        leftAttendanceCell.setBorder(PdfPCell.NO_BORDER); 
+        teamsInfoTable.addCell(leftAttendanceCell);
+        //Team2 location
+        PdfPCell rightAttendanceCell = new PdfPCell(new Paragraph("Average attendance at home games: " + avgAttendanceTeam2));
+        rightAttendanceCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        rightAttendanceCell.setBorder(PdfPCell.NO_BORDER); 
+        teamsInfoTable.addCell(rightAttendanceCell);
+
+        document.add(teamsInfoTable);
+        var emptyParagraph = new Paragraph("\n\n");
+        document.add(emptyParagraph);
+
+        
         Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12, Font.BOLD);
         PdfPCell headerCell1 = new PdfPCell(new Paragraph("First name", headerFont));
         PdfPCell headerCell2 = new PdfPCell(new Paragraph("Last name", headerFont));
