@@ -16,4 +16,5 @@ public interface IRefereeService {
     List<Referee> recommendRefereesByExperience(ExperienceRequest request);
     List<Referee> recommendRefereesByAvgPoints(ExperienceRequest request);
     List<Referee> recommendRefereeForTeamByMatchesWon(Long teamId);
+    List<Referee> recommendRefereesByAvgAttendaceOnMatch(Long matchId);
 }

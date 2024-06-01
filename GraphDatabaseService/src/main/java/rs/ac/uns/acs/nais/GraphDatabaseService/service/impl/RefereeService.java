@@ -70,4 +70,9 @@ public class RefereeService implements IRefereeService {
     public List<Referee> recommendRefereeForTeamByMatchesWon(Long teamId) {
         return refereeRepository.recommendRefereeForTeamByMatchesWon(teamId);
     }
+
+    @Override
+    public List<Referee> recommendRefereesByAvgAttendaceOnMatch(Long matchId) {
+        return refereeRepository.recommendRefereesByAvgAttendaceOnMatch(matchId);
+    }
 }

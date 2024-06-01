@@ -86,7 +86,7 @@ public class MatchService implements IMatchService {
         Paragraph matchData = new Paragraph();
         matchData.setAlignment(Element.ALIGN_CENTER);
         matchData.add(new Chunk("City: " + matchFromDb.getCity() + "\n", matchDataFont));
-        matchData.add(new Chunk("Date: " + matchFromDb.getMatchDay().format(DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss")) + "\n\n", matchDataFont));
+        matchData.add(new Chunk("Date: " + matchFromDb.getMatchDay().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH-mm-ss")) + "\n\n", matchDataFont));
         document.add(matchData);
 
         Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12, Font.BOLD);
