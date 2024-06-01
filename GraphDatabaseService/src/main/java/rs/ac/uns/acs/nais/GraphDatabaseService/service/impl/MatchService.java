@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Match;
 import rs.ac.uns.acs.nais.GraphDatabaseService.repository.MatchRepository;
 import rs.ac.uns.acs.nais.GraphDatabaseService.repository.RefereeRepository;
+import rs.ac.uns.acs.nais.GraphDatabaseService.repository.TeamRepository;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.IMatchService;
 
 import java.io.ByteArrayOutputStream;
@@ -23,6 +24,7 @@ public class MatchService implements IMatchService {
     
     private final MatchRepository matchRepository;
     private final RefereeRepository refereeRepository;
+    private final TeamRepository teamRepository;
 
     @Override
     public List<Match> findAll() {
@@ -64,6 +66,9 @@ public class MatchService implements IMatchService {
     
     public byte[] exportPdf(Long matchId) throws IOException {
         var matchFromDb = matchRepository.findById(matchId).orElse(null);
+        var teams = teamRepository.getTeamsForMatch(matchId);
+        var avgAttendanceTeam1 = teamRepository.getTeamAvgAttendanceHome(teams.get(0).getId());
+        var avgAttendanceTeam2 = teamRepository.getTeamAvgAttendanceHome(teams.get(1).getId());
 
         assert matchFromDb != null;
         var recommendationForMatch = refereeRepository.recommendRefereeByExperience(matchFromDb.getId(), matchFromDb.getMatchDay());

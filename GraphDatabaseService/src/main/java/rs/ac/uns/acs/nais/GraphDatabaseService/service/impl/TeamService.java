@@ -59,4 +59,9 @@ public class TeamService implements ITeamService {
             teamRepository.createPlay(playsMatchDTO.getTeamId(), playsMatchDTO.getMatchId(), playsMatchDTO.getTeamSide(), playsMatchDTO.getWon());
         }
     }
+
+    @Override
+    public List<Team> recommendTeamsForReferee(Long refereeId) {
+        return teamRepository.recommendTeamsForReferee(refereeId);
+    }
 }

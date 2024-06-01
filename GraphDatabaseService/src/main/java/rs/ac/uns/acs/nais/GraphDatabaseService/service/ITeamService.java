@@ -12,4 +12,5 @@ public interface ITeamService {
     boolean updateTeam(String emailOld, String emailNew);
     void addPlaysMatch(PlaysMatchDTO playsMatchDTO);
     void addMultiplePlaysMatch(List<PlaysMatchDTO> multiplePlaysMatchDTO);
+    List<Team> recommendTeamsForReferee(Long refereeId);
 }

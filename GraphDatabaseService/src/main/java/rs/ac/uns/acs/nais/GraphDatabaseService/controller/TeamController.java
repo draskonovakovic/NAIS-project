@@ -8,6 +8,7 @@ import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlaysMatchDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Team;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.impl.TeamService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -26,6 +27,15 @@ public class TeamController {
     @PostMapping("create")
     public ResponseEntity<Team> create(@RequestBody Team team) {
         Team retVal = teamService.addTeam(team);
+        return new ResponseEntity<>(retVal, HttpStatus.CREATED);
+    }
+
+    @PostMapping("createList")
+    public ResponseEntity<List<Team>> createList(@RequestBody List<Team> teams) {
+        var retVal = new ArrayList<Team>();
+        for(var team: teams){
+            retVal.add(teamService.addTeam(team));
+        }
         return new ResponseEntity<>(retVal, HttpStatus.CREATED);
     }
 
@@ -57,5 +67,10 @@ public class TeamController {
     public ResponseEntity addMultiplePlaysMatch(@RequestBody List<PlaysMatchDTO> multiplePlaysMatchDTO) {
         teamService.addMultiplePlaysMatch(multiplePlaysMatchDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("recommendTeamsForReferee")
+    public ResponseEntity<List<Team>> recommendTeamsForReferee(@RequestParam Long refereeId){
+        return new ResponseEntity<>(teamService.recommendTeamsForReferee(refereeId), HttpStatus.OK);
     }
 }
