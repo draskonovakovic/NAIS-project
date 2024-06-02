@@ -14,7 +14,7 @@ public class PlayerPublisher {
     private Sinks.Many<ColumnPlayerEvent> playerSink;
 
     public void raisePlayerEvent(final Player player){
-        var dto = PlayerDto.of(
+        var dto = new PlayerDto(
                 player.getId(),
                 player.getName(),
                 player.getSurname(),

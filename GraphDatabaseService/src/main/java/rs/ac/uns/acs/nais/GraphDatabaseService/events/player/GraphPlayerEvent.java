@@ -1,12 +1,14 @@
 package rs.ac.uns.acs.nais.GraphDatabaseService.events.player;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlayerDto;
 import rs.ac.uns.acs.nais.GraphDatabaseService.events.Event;
 import java.util.Date;
 import java.util.UUID;
 
 @Data
+@RequiredArgsConstructor
 public class GraphPlayerEvent implements Event {
 
     private final UUID eventId = UUID.randomUUID();
