@@ -1,4 +1,4 @@
-package com.example.events.order;
+/*package com.example.events.order;
 
 import lombok.Data;
 
@@ -42,3 +42,4 @@ public class OrderEvent implements Event {
         return orderStatus;
     }
 }
+*/

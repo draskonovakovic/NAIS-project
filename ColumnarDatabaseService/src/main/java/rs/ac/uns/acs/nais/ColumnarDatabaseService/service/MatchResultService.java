@@ -1,6 +1,6 @@
 package rs.ac.uns.acs.nais.ColumnarDatabaseService.service;
 
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.entity.MatchResult;

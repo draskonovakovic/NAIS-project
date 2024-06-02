@@ -1,4 +1,4 @@
-package com.example.events.order;
+/*package com.example.events.order;
 
 public enum OrderStatus {
 
@@ -6,4 +6,4 @@ public enum OrderStatus {
     ORDER_CANCELLED,
     ORDER_COMPLETED
 
-}
+}*/

@@ -1,6 +1,7 @@
-package com.example.events.inventory;
+/*package com.example.events.inventory;
 
 public enum InventoryStatus {
     RESERVED,
     REJECTED;
 }
+*/

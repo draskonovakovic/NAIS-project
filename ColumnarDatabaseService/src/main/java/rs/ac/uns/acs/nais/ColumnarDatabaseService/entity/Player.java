@@ -1,8 +1,5 @@
 package rs.ac.uns.acs.nais.ColumnarDatabaseService.entity;
 
-import jakarta.persistence.Entity;
-import lombok.Data;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;

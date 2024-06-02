@@ -1,4 +1,4 @@
-package com.example.events.inventory;
+/*package com.example.events.inventory;
 
 import lombok.Data;
 
@@ -43,3 +43,4 @@ public class InventoryEvent implements Event {
     }
 
 }
+*/
