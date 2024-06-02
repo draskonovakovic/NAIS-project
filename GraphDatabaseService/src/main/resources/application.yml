@@ -19,6 +19,13 @@ eureka:
   instance:
     prefer-ip-address: true
 
-
+spring.cloud.stream:
+  function:
+    definition: graphPlayerProcessor
+  bindings:
+    graphPlayerProcessor-in-0:
+      destination: column-player-event
+    graphPlayerProcessor-out-0:
+      destination: graph-player-event
 
 
