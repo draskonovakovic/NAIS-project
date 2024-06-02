@@ -19,11 +19,11 @@ public class RefereeService {
         return refereeRepository.save(referee);
     }
 
-    public Optional<Referee> findRefereeById(UUID id) {
+    public Optional<Referee> findRefereeById(long id) {
         return refereeRepository.findById(id);
     }
 
-    public Referee updateReferee(UUID id, Referee refereeDetails) {
+    public Referee updateReferee(long id, Referee refereeDetails) {
         return refereeRepository.findById(id).map(referee -> {
             referee.setEmail(refereeDetails.getEmail());
             referee.setName(refereeDetails.getName());
@@ -34,7 +34,7 @@ public class RefereeService {
         }).orElseThrow(() -> new RuntimeException("Referee not found with id " + id));
     }
 
-    public void deleteRefereeById(UUID id) {
+    public void deleteRefereeById(long id) {
         refereeRepository.deleteById(id);
     }
 }

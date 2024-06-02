@@ -20,7 +20,7 @@ public class MatchResultService {
         return matchResultRepository.save(matchResult);
     }
 
-    public Optional<MatchResult> findMatchResultById(UUID id) {
+    public Optional<MatchResult> findMatchResultById(long id) {
         return matchResultRepository.findById(id);
     }
 
@@ -28,11 +28,11 @@ public class MatchResultService {
         return matchResultRepository.findAll();
     }
 
-    public void deleteMatchResultById(UUID id) {
+    public void deleteMatchResultById(long id) {
         matchResultRepository.deleteById(id);
     }
 
-    public MatchResult updateMatchResult(UUID id, MatchResult matchResultDetails) {
+    public MatchResult updateMatchResult(long id, MatchResult matchResultDetails) {
         return matchResultRepository.findById(id).map(matchResult -> {
             matchResult.setMatchId(matchResultDetails.getMatchId());
             matchResult.setWinnerId(matchResultDetails.getWinnerId());

@@ -3,6 +3,7 @@ package rs.ac.uns.acs.nais.ColumnarDatabaseService.entity;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
@@ -15,8 +16,8 @@ import java.util.UUID;
 @Table("players")
 public class Player {
 
-    @PrimaryKeyColumn(name = "id", type = PrimaryKeyType.PARTITIONED)
-    private UUID id;
+    @PrimaryKeyColumn(name = "id", ordinal = 0, ordering = Ordering.ASCENDING)
+    private long id;
 
     @Column("email")
     private String email;
@@ -45,17 +46,17 @@ public class Player {
     @Column("weight")
     private double weight;
 
-    @Column("jerseyNumber")
+    @Column("jersey_number")
     private int jerseyNumber;
 
-    @Column("team_id")
-    private UUID teamId;
+    @PrimaryKeyColumn(name = "team_id", type = PrimaryKeyType.PARTITIONED)
+    private long teamId;
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -139,11 +140,11 @@ public class Player {
         this.jerseyNumber = jerseyNumber;
     }
 
-    public UUID getTeamId() {
+    public long getTeamId() {
         return teamId;
     }
 
-    public void setTeamId(UUID teamId) {
+    public void setTeamId(long teamId) {
         this.teamId = teamId;
     }
 }

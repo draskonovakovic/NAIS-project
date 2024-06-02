@@ -3,6 +3,7 @@ package rs.ac.uns.acs.nais.ColumnarDatabaseService.entity;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
@@ -16,14 +17,14 @@ import java.util.UUID;
 @Table("match_results")
 public class MatchResult {
 
-    @PrimaryKeyColumn(name = "id", type = PrimaryKeyType.PARTITIONED)
-    private UUID id;
+    @PrimaryKeyColumn(name = "id", ordinal = 0, ordering = Ordering.ASCENDING)
+    private long id;
 
-    @Column("match_id")
-    private UUID matchId;
+    @PrimaryKeyColumn(name = "match_id", ordinal = 1, ordering = Ordering.DESCENDING)
+    private long matchId;
 
-    @Column("winner_id")
-    private UUID winnerId;
+    @PrimaryKeyColumn(name = "winner_id", type = PrimaryKeyType.PARTITIONED)
+    private long winnerId;
 
     @Column("home_team_score")
     private int homeTeamScore;
@@ -32,7 +33,7 @@ public class MatchResult {
     private int awayTeamScore;
 
     @Column("player_of_game_id")
-    private UUID playerOfGameId;
+    private long playerOfGameId;
 
     @Column("home_team_field_goals")
     private int homeTeamFieldGoals;
@@ -70,27 +71,27 @@ public class MatchResult {
     @Column("away_team_personal_fouls")
     private int awayTeamPersonalFouls;
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public UUID getMatchId() {
+    public long getMatchId() {
         return matchId;
     }
 
-    public void setMatchId(UUID matchId) {
+    public void setMatchId(long matchId) {
         this.matchId = matchId;
     }
 
-    public UUID getWinnerId() {
+    public long getWinnerId() {
         return winnerId;
     }
 
-    public void setWinnerId(UUID winnerId) {
+    public void setWinnerId(long winnerId) {
         this.winnerId = winnerId;
     }
 
@@ -110,11 +111,11 @@ public class MatchResult {
         this.awayTeamScore = awayTeamScore;
     }
 
-    public UUID getPlayerOfGameId() {
+    public long getPlayerOfGameId() {
         return playerOfGameId;
     }
 
-    public void setPlayerOfGameId(UUID playerOfGameId) {
+    public void setPlayerOfGameId(long playerOfGameId) {
         this.playerOfGameId = playerOfGameId;
     }
 

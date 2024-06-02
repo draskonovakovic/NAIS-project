@@ -1,5 +1,4 @@
 package rs.ac.uns.acs.nais.ColumnarDatabaseService.service;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,15 +23,15 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
-    public Optional<Player> findById(UUID id) {
+    public Optional<Player> findById(long id) {
         return playerRepository.findById(id);
     }
 
-    public void deleteById(UUID id) {
+    public void deleteById(long id) {
         playerRepository.deleteById(id);
     }
 
-    public Player updatePlayer(UUID id, Player playerDetails) {
+    public Player updatePlayer(long id, Player playerDetails) {
         return playerRepository.findById(id).map(player -> {
             player.setEmail(playerDetails.getEmail());
             player.setName(playerDetails.getName());
@@ -49,4 +48,11 @@ public class PlayerService {
         }).orElseThrow(() -> new RuntimeException("Player not found with id " + id));
     }
 
+    public List<Player> filterPlayersByHeightWeightAndBirthday(){
+        return playerRepository.filterPlayersByHeightWeightAndBirthday();
+    }
+
+    public List<Player> getPlayersFromUSA(){
+        return playerRepository.getPlayersFromUSA();
+    }
 }

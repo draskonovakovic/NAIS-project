@@ -1,6 +1,7 @@
 package rs.ac.uns.acs.nais.ColumnarDatabaseService.entity;
 
 import lombok.Data;
+import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
@@ -13,12 +14,12 @@ import java.util.UUID;
 public class Referee {
 
     @PrimaryKeyColumn(name = "id", type = PrimaryKeyType.PARTITIONED)
-    private UUID id;
+    private long id;
 
     @Column("email")
     private String email;
 
-    @Column("name")
+    @PrimaryKeyColumn(name = "name", ordinal = 0, ordering = Ordering.ASCENDING)
     private String name;
 
     @Column("surname")
@@ -30,11 +31,11 @@ public class Referee {
     @Column("city")
     private String city;
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(long id) {
         this.id = id;
     }
 

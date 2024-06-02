@@ -19,6 +19,7 @@ services:
     depends_on:
       - eureka-server
       - columnar-key-value-service
+     # - graph-service
       - graph-spring-example
     ports:
       - "9000:9000"

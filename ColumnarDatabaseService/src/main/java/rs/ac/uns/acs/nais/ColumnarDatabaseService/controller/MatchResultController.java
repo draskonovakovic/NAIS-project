@@ -26,14 +26,14 @@ public class MatchResultController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MatchResult> findMatchResultById(@PathVariable UUID id) {
+    public ResponseEntity<MatchResult> findMatchResultById(@PathVariable long id) {
         Optional<MatchResult> matchResult = matchResultService.findMatchResultById(id);
         return matchResult.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMatchResultById(@PathVariable UUID id) {
+    public ResponseEntity<Void> deleteMatchResultById(@PathVariable long id) {
         matchResultService.deleteMatchResultById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -45,7 +45,7 @@ public class MatchResultController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MatchResult> updateMatchResult(@PathVariable UUID id, @RequestBody MatchResult matchResultDetails) {
+    public ResponseEntity<MatchResult> updateMatchResult(@PathVariable long id, @RequestBody MatchResult matchResultDetails) {
         try {
             MatchResult updatedMatchResult = matchResultService.updateMatchResult(id, matchResultDetails);
             return new ResponseEntity<>(updatedMatchResult, HttpStatus.OK);

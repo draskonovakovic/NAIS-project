@@ -23,14 +23,14 @@ public class RefereeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Referee> findRefereeById(@PathVariable UUID id) {
+    public ResponseEntity<Referee> findRefereeById(@PathVariable long id) {
         Optional<Referee> referee = refereeService.findRefereeById(id);
         return referee.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Referee> updateReferee(@PathVariable UUID id, @RequestBody Referee refereeDetails) {
+    public ResponseEntity<Referee> updateReferee(@PathVariable long id, @RequestBody Referee refereeDetails) {
         try {
             Referee updatedReferee = refereeService.updateReferee(id, refereeDetails);
             return new ResponseEntity<>(updatedReferee, HttpStatus.OK);
@@ -40,7 +40,7 @@ public class RefereeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRefereeById(@PathVariable UUID id) {
+    public ResponseEntity<Void> deleteRefereeById(@PathVariable long id) {
         refereeService.deleteRefereeById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
