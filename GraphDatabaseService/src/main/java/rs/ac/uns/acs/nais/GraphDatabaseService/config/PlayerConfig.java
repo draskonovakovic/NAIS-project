@@ -1,13 +1,13 @@
 package rs.ac.uns.acs.nais.GraphDatabaseService.config;
 
-import com.example.dto.PlayerDto;
-import com.example.events.player.ColumnPlayerEvent;
-import com.example.events.player.GraphPlayerEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlayerDto;
+import rs.ac.uns.acs.nais.GraphDatabaseService.events.player.ColumnPlayerEvent;
+import rs.ac.uns.acs.nais.GraphDatabaseService.events.player.GraphPlayerEvent;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Player;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.impl.PlayerService;
 
