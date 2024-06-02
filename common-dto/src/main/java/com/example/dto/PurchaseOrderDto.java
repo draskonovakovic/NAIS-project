@@ -1,4 +1,4 @@
-package com.example.dto;
+/*package com.example.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,4 +16,4 @@ public class PurchaseOrderDto {
     private Integer price;
     private Integer userId;
 
-}
+}*/

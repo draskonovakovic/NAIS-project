@@ -1,4 +1,4 @@
-package com.example.events.payment;
+/*package com.example.events.payment;
 
 import lombok.Data;
 
@@ -42,3 +42,4 @@ public class PaymentEvent implements Event {
         return paymentStatus;
     }
 }
+*/

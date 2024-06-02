@@ -1,4 +1,4 @@
-package com.example.dto;
+/*package com.example.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,3 +20,4 @@ public class OrderResponseDto {
     private OrderStatus status;
 
 }
+*/

@@ -1,4 +1,4 @@
-package com.example.dto;
+/*package com.example.dto;
 
 import lombok.Data;
 
@@ -11,4 +11,4 @@ public class OrderRequestDto {
     private Integer productId;
     private UUID orderId;
 
-}
+}*/
