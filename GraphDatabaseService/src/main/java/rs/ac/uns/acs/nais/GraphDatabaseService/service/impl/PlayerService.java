@@ -22,6 +22,12 @@ public class PlayerService implements IPlayerService {
 
     @Override
     public Player addPlayer(Player player) {
+        var playerFromDb = playerRepository.findById(player.getId()).orElse(null);
+        if(playerFromDb != null){
+            player.setIsActive(false);
+            return player;
+        }
+
         player.setIsActive(true);
         return playerRepository.save(player);
     }
