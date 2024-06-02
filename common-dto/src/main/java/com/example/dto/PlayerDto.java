@@ -7,5 +7,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PlayerDto {
 
-    private Long playerId;
+    private Long id;
+    private String name;
+    private String surname;
+    private Integer height;
+    private Integer jerseyNumber;
+    private String email;
+    private Boolean isActive;
+
 }

@@ -15,6 +15,10 @@ public class PlayerEvent implements Event {
     private final Date date = new Date();
     private final PlayerDto player;
 
+    public PlayerEvent(PlayerDto player){
+        this.player = player;
+    }
+
     @Override
     public UUID getEventId() {
         return this.eventId;
