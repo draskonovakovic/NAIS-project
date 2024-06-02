@@ -1,16 +1,18 @@
 package rs.ac.uns.acs.nais.GraphDatabaseService.model;
 
+import lombok.Data;
 import org.springframework.data.neo4j.core.schema.RelationshipId;
 import org.springframework.data.neo4j.core.schema.RelationshipProperties;
 import org.springframework.data.neo4j.core.schema.TargetNode;
 
+@Data
 @RelationshipProperties
-public class PlaysMatch {
+public class Refereed {
 
     @RelationshipId
     private Long id;
     @TargetNode
     private Match match;
-    private String teamSide;
-    private boolean won;
+    private int points;
+    private boolean isRisk;
 }

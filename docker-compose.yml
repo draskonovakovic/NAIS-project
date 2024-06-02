@@ -20,6 +20,7 @@ services:
       - eureka-server
       - columnar-key-value-service
      # - graph-service
+      - graph-spring-example
     ports:
       - "9000:9000"
     networks:
@@ -81,6 +82,37 @@ services:
      # - cassandradb
     #networks:
      # - my_network
+
+  graph-spring-example:
+    build:
+      context: ./GraphDatabaseService
+      dockerfile: Dockerfile
+    image: graph-spring-example:latest
+    depends_on:
+      - eureka-server
+      - neo4j
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka
+      SPRING_NEO4J_URI: "bolt://neo4j:7687"
+      SPRING_NEO4J_USERNAME: neo4j
+      SPRING_NEO4J_PASSWORD: password
+    ports:
+      - "9051:9051"
+    networks:
+      - my_network
+
+  neo4j:
+    image: neo4j
+    container_name: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/password
+    volumes:
+      - ./data:/data
+    networks:
+      - my_network
 
 networks:
   my_network:

@@ -18,8 +18,9 @@ public class Team {
     private String country;
     private String city;
 
-    @Relationship(value = "HAS_PLAYER", direction = Relationship.Direction.OUTGOING)
-    private List<HasPlayer> players = new ArrayList<>();
+    @Relationship(value = "PLAYS_MATCH", direction = Relationship.Direction.OUTGOING)
+    private List<PlaysMatch> matches = new ArrayList<>();
 
+    private String email;
     private Boolean isActive;
 }

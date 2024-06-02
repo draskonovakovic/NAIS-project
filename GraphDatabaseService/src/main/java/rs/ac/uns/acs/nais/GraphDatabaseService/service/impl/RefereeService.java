@@ -2,6 +2,8 @@ package rs.ac.uns.acs.nais.GraphDatabaseService.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.ExperienceRequest;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.RefereedDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Referee;
 import rs.ac.uns.acs.nais.GraphDatabaseService.repository.RefereeRepository;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.IRefereeService;
@@ -45,5 +47,32 @@ public class RefereeService implements IRefereeService {
             return true;
         }
         return false;
+    }
+
+    public void addRefereed(RefereedDTO refereedDTO){
+        refereeRepository.createRefereed(refereedDTO.getRefereeId(), refereedDTO.getMatchId(), refereedDTO.getPoints(), refereedDTO.isRisk());
+    }
+
+    @Override
+    public List<Referee> recommendRefereesByExperience(ExperienceRequest request) {
+        return refereeRepository.recommendRefereeByExperience(request.getMatchId(), request.getMatchDay());
+
+    }
+
+    @Override
+    public List<Referee> recommendRefereesByAvgPoints(ExperienceRequest request) {
+        var avgPoints = refereeRepository.avgPoints(request.getMatchId(), request.getMatchDay());
+        System.out.println(avgPoints);
+        return refereeRepository.recommendRefereesByAvgPoints(request.getMatchId(), request.getMatchDay(), avgPoints);
+    }
+
+    @Override
+    public List<Referee> recommendRefereeForTeamByMatchesWon(Long teamId) {
+        return refereeRepository.recommendRefereeForTeamByMatchesWon(teamId);
+    }
+
+    @Override
+    public List<Referee> recommendRefereesByAvgAttendaceOnMatch(Long matchId) {
+        return refereeRepository.recommendRefereesByAvgAttendaceOnMatch(matchId);
     }
 }

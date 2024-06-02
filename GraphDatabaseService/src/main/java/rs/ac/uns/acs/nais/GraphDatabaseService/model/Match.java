@@ -17,9 +17,7 @@ public class Match {
 
     private LocalDateTime matchDay;
     private String city;
-
-    @Relationship(value = "PLAYS_MATCH", direction = Relationship.Direction.OUTGOING)
-    private List<PlaysMatch> teams = new ArrayList<>();
+    private int attendance;
 
     private Boolean isActive;
 }
