@@ -2,7 +2,11 @@ package rs.ac.uns.acs.nais.GraphDatabaseService.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import rs.ac.uns.acs.nais.GraphDatabaseService.config.PlayerConfig;
+import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlayerDto;
 import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlaysForDTO;
+import rs.ac.uns.acs.nais.GraphDatabaseService.events.player.ColumnPlayerEvent;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Player;
 import rs.ac.uns.acs.nais.GraphDatabaseService.repository.PlayerRepository;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.IPlayerService;

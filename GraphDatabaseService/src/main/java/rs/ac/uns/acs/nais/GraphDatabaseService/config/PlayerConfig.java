@@ -36,7 +36,7 @@ public class PlayerConfig {
     }
 
 
-    private Player DtoToPlayer(PlayerDto playerDto){
+    public Player DtoToPlayer(PlayerDto playerDto){
         var newPlayer = new Player();
 
         newPlayer.setId(playerDto.getId());

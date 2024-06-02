@@ -1,5 +1,6 @@
 package rs.ac.uns.acs.nais.GraphDatabaseService.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
@@ -21,4 +22,5 @@ public class Player {
 
     private String email;
     private Boolean isActive;
+
 }

@@ -1,6 +1,7 @@
 package rs.ac.uns.acs.nais.ColumnarDatabaseService.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.entity.Player;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.entity.Team;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.repository.PlayerRepository;
@@ -14,8 +15,14 @@ public class PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
 
+    @Autowired
+    private PlayerPublisher publisher;
+
+    @Transactional
     public Player save(Player player) {
-        return playerRepository.save(player);
+        Player savedPlayer = playerRepository.save(player);
+        this.publisher.raisePlayerEvent(savedPlayer);
+        return savedPlayer;
     }
 
     public List<Player> findAll() {
