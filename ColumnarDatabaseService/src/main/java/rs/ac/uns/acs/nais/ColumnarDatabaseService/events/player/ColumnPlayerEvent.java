@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.UUID;
 
 @Data
-@RequiredArgsConstructor
 public class ColumnPlayerEvent implements Event {
 
     private final UUID eventId = UUID.randomUUID();
@@ -27,4 +26,7 @@ public class ColumnPlayerEvent implements Event {
         return this.date;
     }
 
+    public ColumnPlayerEvent(PlayerDto player) {
+        this.player = player;
+    }
 }

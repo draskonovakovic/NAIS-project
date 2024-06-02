@@ -1,1 +1,4 @@
+com\example\dto\PlayerDto.class
+com\example\events\player\ColumnPlayerEvent.class
 com\example\events\Event.class
+com\example\events\player\GraphPlayerEvent.class
