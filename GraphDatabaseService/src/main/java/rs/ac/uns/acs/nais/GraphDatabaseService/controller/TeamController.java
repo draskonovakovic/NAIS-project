@@ -8,6 +8,7 @@ import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlaysMatchDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Team;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.impl.TeamService;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class TeamController {
     }
 
     @GetMapping("recommendTeamsForReferee")
-    public ResponseEntity<List<Team>> recommendTeamsForReferee(@RequestParam Long refereeId){
-        return new ResponseEntity<>(teamService.recommendTeamsForReferee(refereeId), HttpStatus.OK);
+    public ResponseEntity<List<Team>> recommendTeamsForReferee(@RequestParam Long refereeId, @RequestParam LocalDateTime startDate){
+        return new ResponseEntity<>(teamService.recommendTeamsForReferee(refereeId, startDate), HttpStatus.OK);
     }
 }

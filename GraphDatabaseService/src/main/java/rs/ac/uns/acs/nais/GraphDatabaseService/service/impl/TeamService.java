@@ -63,8 +63,7 @@ public class TeamService implements ITeamService {
     }
 
     @Override
-    public List<Team> recommendTeamsForReferee(Long refereeId) {
-        LocalDateTime startDate = LocalDateTime.of(2024, Month.JANUARY, 1, 0, 0);
+    public List<Team> recommendTeamsForReferee(Long refereeId, LocalDateTime startDate) {
         return teamRepository.recommendTeamsForReferee(refereeId, startDate);
     }
 }
