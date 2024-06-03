@@ -24,16 +24,16 @@ public class MatchResultController {
         return new ResponseEntity<>(savedMatchResult, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<MatchResult> findMatchResultById(@PathVariable long id) {
-        Optional<MatchResult> matchResult = matchResultService.findMatchResultById(id);
+    @GetMapping("/{id}/{matchId}/{winnerId}")
+    public ResponseEntity<MatchResult> findMatchResultById(@PathVariable long id,@PathVariable long matchId,@PathVariable long winnerId) {
+        Optional<MatchResult> matchResult = matchResultService.findMatchResultById(id,matchId,winnerId);
         return matchResult.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMatchResultById(@PathVariable long id) {
-        matchResultService.deleteMatchResultById(id);
+    @DeleteMapping("/{id}/{matchId}/{winnerId}")
+    public ResponseEntity<Void> deleteMatchResultById(@PathVariable long id,@PathVariable long matchId,@PathVariable long winnerId) {
+        matchResultService.deleteMatchResultById(id,matchId,winnerId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
@@ -43,10 +43,10 @@ public class MatchResultController {
         return ResponseEntity.ok(results);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<MatchResult> updateMatchResult(@PathVariable long id, @RequestBody MatchResult matchResultDetails) {
+    @PutMapping("/{id}/{matchId}/{winnerId}")
+    public ResponseEntity<MatchResult> updateMatchResult(@PathVariable long id,@PathVariable long matchId,@PathVariable long winnerId, @RequestBody MatchResult matchResultDetails) {
         try {
-            MatchResult updatedMatchResult = matchResultService.updateMatchResult(id, matchResultDetails);
+            MatchResult updatedMatchResult = matchResultService.updateMatchResult(id,matchId,winnerId, matchResultDetails);
             return new ResponseEntity<>(updatedMatchResult, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -35,22 +35,22 @@ public class TeamController {
         return ResponseEntity.ok(teams);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Team> getTeamById(@PathVariable long id) {
-        Optional<Team> team = teamService.findById(id);
+    @GetMapping("/{id}/{name}")
+    public ResponseEntity<Team> getTeamById(@PathVariable long id,@PathVariable String name) {
+        Optional<Team> team = teamService.findById(id,name);
         return team.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTeam(@PathVariable long id) {
-        teamService.deleteById(id);
+    @DeleteMapping("/{id}/{name}")
+    public ResponseEntity<Void> deleteTeam(@PathVariable long id,@PathVariable String name) {
+        teamService.deleteById(id,name);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Team> updateTeam(@PathVariable long id, @RequestBody Team teamDetails) {
+    @PutMapping("/{id}/{name}")
+    public ResponseEntity<Team> updateTeam(@PathVariable long id,@PathVariable String name, @RequestBody Team teamDetails) {
         try {
-            Team updatedTeam = teamService.updateTeam(id, teamDetails);
+            Team updatedTeam = teamService.updateTeam(id,name, teamDetails);
             return new ResponseEntity<>(updatedTeam, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

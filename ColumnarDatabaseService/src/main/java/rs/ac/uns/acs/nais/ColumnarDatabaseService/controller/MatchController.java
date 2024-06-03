@@ -8,6 +8,7 @@ import rs.ac.uns.acs.nais.ColumnarDatabaseService.entity.MatchesGroupByCity;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.entity.Match;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.service.MatchService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,26 +25,26 @@ public class MatchController {
         return new ResponseEntity<>(savedMatch, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Match> findMatchById(@PathVariable long id) {
-        Optional<Match> match = matchService.findMatchById(id);
+    @GetMapping("/{id}/{date}/{city}")
+    public ResponseEntity<Match> findMatchById(@PathVariable long id, @PathVariable LocalDateTime date, @PathVariable String city) {
+        Optional<Match> match = matchService.findMatchById(id,date,city);
         return match.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Match> updateMatch(@PathVariable long id, @RequestBody Match matchDetails) {
+    @PutMapping("/{id}/{date}/{city}")
+    public ResponseEntity<Match> updateMatch(@PathVariable long id, @PathVariable LocalDateTime date, @PathVariable String city, @RequestBody Match matchDetails) {
         try {
-            Match updatedMatch = matchService.updateMatch(id, matchDetails);
+            Match updatedMatch = matchService.updateMatch(id,date,city, matchDetails);
             return new ResponseEntity<>(updatedMatch, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMatchById(@PathVariable long id) {
-        matchService.deleteMatchById(id);
+    @DeleteMapping("/{id}/{date}/{city}")
+    public ResponseEntity<Void> deleteMatchById(@PathVariable long id, @PathVariable LocalDateTime date, @PathVariable String city) {
+        matchService.deleteMatchById(id,date,city);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.entity.Team;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TeamRepository extends CassandraRepository<Team, Long> {
@@ -25,4 +26,8 @@ public interface TeamRepository extends CassandraRepository<Team, Long> {
     @Query("SELECT id from teams" +
             " where country = 'USA' allow filtering")
     List<Long> getTeamsFromUSAIds();
+
+    Optional<Team> findTeamByIdAndName(long id, String name);
+
+    void deleteTeamByIdAndName(long id,String name);
 }
