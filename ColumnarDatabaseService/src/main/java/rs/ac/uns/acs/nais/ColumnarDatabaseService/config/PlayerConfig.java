@@ -19,23 +19,6 @@ import java.util.function.Supplier;
 
 @Configuration
 public class PlayerConfig {
-
-    @Autowired
-    private PlayerService playerService;
-
-    @Bean
-    public Consumer<Flux<GraphPlayerEvent>> graphPlayerProcessor() {
-        return flux -> flux.doOnNext(this::processPlayer).subscribe();
-    }
-
-    private void processPlayer(GraphPlayerEvent event) {
-        var isActive = event.getPlayer().getIsActive();
-        var playerId = event.getPlayer().getId();
-
-        if (!isActive) {
-            playerService.deleteById(playerId);
-        }
-    }
     @Bean
     public Sinks.Many<ColumnPlayerEvent> playerSink(){
         return Sinks.many().unicast().onBackpressureBuffer();
