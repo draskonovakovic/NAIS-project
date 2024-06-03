@@ -7,6 +7,8 @@ import rs.ac.uns.acs.nais.GraphDatabaseService.model.Team;
 import rs.ac.uns.acs.nais.GraphDatabaseService.repository.TeamRepository;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.ITeamService;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.List;
 
 @Service
@@ -62,6 +64,7 @@ public class TeamService implements ITeamService {
 
     @Override
     public List<Team> recommendTeamsForReferee(Long refereeId) {
-        return teamRepository.recommendTeamsForReferee(refereeId);
+        LocalDateTime startDate = LocalDateTime.of(2024, Month.JANUARY, 1, 0, 0);
+        return teamRepository.recommendTeamsForReferee(refereeId, startDate);
     }
 }
