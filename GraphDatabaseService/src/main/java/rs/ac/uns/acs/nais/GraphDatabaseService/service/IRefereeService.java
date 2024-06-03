@@ -5,6 +5,7 @@ import rs.ac.uns.acs.nais.GraphDatabaseService.dto.PlaysMatchDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.dto.RefereedDTO;
 import rs.ac.uns.acs.nais.GraphDatabaseService.model.Referee;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface IRefereeService {
@@ -18,4 +19,5 @@ public interface IRefereeService {
     List<Referee> recommendRefereeForTeamByMatchesWon(Long teamId);
     List<Referee> recommendRefereesByAvgAttendaceOnMatch(Long matchId);
     void updateRefereed(Long refereeId, Long matchId, int points, boolean isRisk);
+    List<Referee> recommendByRation(Long matchId, LocalDateTime matchDay);
 }

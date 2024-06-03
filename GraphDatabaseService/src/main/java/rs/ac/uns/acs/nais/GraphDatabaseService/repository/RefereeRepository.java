@@ -67,4 +67,14 @@ public interface RefereeRepository extends Neo4jRepository<Referee, Long> {
             "ORDER BY avgAttendance DESC " +
             "LIMIT 4")
     List<Referee> recommendRefereesByAvgAttendaceOnMatch(Long matchId);
+
+    @Query("MATCH (currentMatch:Match {id: $matchId, matchDay: $matchDay}) " + 
+    "MATCH (referee:Referee)-[rel:REFEREED]->(previousMatch:Match) " +
+    "WHERE previousMatch.matchDay < currentMatch.matchDay " +
+    "WITH referee, COUNT(CASE WHEN rel.isRisk THEN 1 END) / COUNT(previousMatch) AS riskRatio " +
+    "WHERE riskRatio >= 0 " +
+    "RETURN referee " +
+    "ORDER BY riskRatio DESC " +
+    "LIMIT 4")
+    List<Referee> recommendByRation(Long matchId, LocalDateTime matchDay);
 }

@@ -100,4 +100,10 @@ public class RefereeController {
         refereeService.updateRefereed(refereedDTO.getRefereeId(), refereedDTO.getMatchId(), refereedDTO.getPoints(), refereedDTO.isRisk());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping("recommendByRatio")
+    public ResponseEntity<List<Referee>> recommendByRatio(@RequestBody ExperienceRequest request) {
+        var retVal = refereeService.recommendByRation(request.getMatchId(), request.getMatchDay());
+        return new ResponseEntity<>(retVal, HttpStatus.OK);
+    }
 }

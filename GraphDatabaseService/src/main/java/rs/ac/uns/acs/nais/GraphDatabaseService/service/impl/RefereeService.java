@@ -8,6 +8,7 @@ import rs.ac.uns.acs.nais.GraphDatabaseService.model.Referee;
 import rs.ac.uns.acs.nais.GraphDatabaseService.repository.RefereeRepository;
 import rs.ac.uns.acs.nais.GraphDatabaseService.service.IRefereeService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -79,5 +80,10 @@ public class RefereeService implements IRefereeService {
     @Override
     public void updateRefereed(Long refereeId, Long matchId, int points, boolean isRisk) {
         refereeRepository.updateRefereed(refereeId, matchId, points, isRisk);
+    }
+
+    @Override
+    public List<Referee> recommendByRation(Long matchId, LocalDateTime matchDay) {
+        return refereeRepository.recommendByRation(matchId, matchDay);
     }
 }
