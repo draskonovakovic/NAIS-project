@@ -94,4 +94,10 @@ public class RefereeController {
     public ResponseEntity<List<Referee>> recommendRefereeByAvgAttendaceOnMatch(@RequestParam Long matchId){
         return new ResponseEntity<>(refereeService.recommendRefereesByAvgAttendaceOnMatch(matchId), HttpStatus.OK);
     }
+
+    @PostMapping("updateRefereed")
+    public ResponseEntity updateRefereed(@RequestBody RefereedDTO refereedDTO) {
+        refereeService.updateRefereed(refereedDTO.getRefereeId(), refereedDTO.getMatchId(), refereedDTO.getPoints(), refereedDTO.isRisk());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -17,4 +17,5 @@ public interface IRefereeService {
     List<Referee> recommendRefereesByAvgPoints(ExperienceRequest request);
     List<Referee> recommendRefereeForTeamByMatchesWon(Long teamId);
     List<Referee> recommendRefereesByAvgAttendaceOnMatch(Long matchId);
+    void updateRefereed(Long refereeId, Long matchId, int points, boolean isRisk);
 }
