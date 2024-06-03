@@ -17,7 +17,7 @@ public interface TeamRepository extends Neo4jRepository<Team, Long> {
     void createPlay(Long teamId, Long matchId, String teamSide, Boolean won);
     
     @Query("MATCH (r:Referee {idOriginal: $refereeId})-[refereed:REFEREED]->(m:Match)<-[:PLAYS_MATCH]-(t:Team) " +
-            "WHERE refereed.points > 4 AND m.matchDay > $startDate" +
+            "WHERE refereed.points > 4 AND m.matchDay > $startDate " +
             "WITH t, COUNT(m) AS match_count " +
             "ORDER BY match_count DESC " +
             "LIMIT 4 " +
