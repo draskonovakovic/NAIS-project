@@ -3,12 +3,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.entity.Player;
-import rs.ac.uns.acs.nais.ColumnarDatabaseService.entity.Team;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.repository.PlayerRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class PlayerService {
@@ -29,16 +27,16 @@ public class PlayerService {
         return playerRepository.findAll();
     }
 
-    public Optional<Player> findById(long id) {
-        return playerRepository.findById(id);
+    public Optional<Player> findById(long id, long teamId) {
+        return playerRepository.findPlayerByIdAndAndTeamId(id,teamId);
     }
 
-    public void deleteById(long id) {
-        playerRepository.deleteById(id);
+    public void deleteById(long id,long teamId) {
+        playerRepository.deletePlayerByIdAndTeamId(id,teamId);
     }
 
-    public Player updatePlayer(long id, Player playerDetails) {
-        return playerRepository.findById(id).map(player -> {
+    public Player updatePlayer(long id,long teamId, Player playerDetails) {
+        return playerRepository.findPlayerByIdAndAndTeamId(id,teamId).map(player -> {
             player.setEmail(playerDetails.getEmail());
             player.setName(playerDetails.getName());
             player.setSurname(playerDetails.getSurname());

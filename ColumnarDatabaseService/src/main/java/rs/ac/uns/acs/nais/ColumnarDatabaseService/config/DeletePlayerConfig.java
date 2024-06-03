@@ -25,7 +25,7 @@ public class DeletePlayerConfig {
         var playerId = event.getPlayer().getId();
 
         if (!isActive) {
-            playerService.deleteById(playerId);
+            playerService.deleteById(playerId,0);
         }
     }
 }

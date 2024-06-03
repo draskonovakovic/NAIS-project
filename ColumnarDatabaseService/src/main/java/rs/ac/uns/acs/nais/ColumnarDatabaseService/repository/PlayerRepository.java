@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.entity.Player;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PlayerRepository extends CassandraRepository<Player, Long> {
@@ -17,4 +18,7 @@ public interface PlayerRepository extends CassandraRepository<Player, Long> {
     @Query("SELECT * from players" +
             " where country = 'USA' allow filtering")
     List<Player> getPlayersFromUSA();
+
+    Optional<Player> findPlayerByIdAndAndTeamId(long id,long teamId);
+    void deletePlayerByIdAndTeamId(long id,long teamId);
 }

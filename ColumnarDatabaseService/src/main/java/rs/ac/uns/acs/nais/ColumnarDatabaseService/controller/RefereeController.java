@@ -21,26 +21,26 @@ public class RefereeController {
         return new ResponseEntity<>(savedReferee, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Referee> findRefereeById(@PathVariable long id) {
-        Optional<Referee> referee = refereeService.findRefereeById(id);
+    @GetMapping("/{id}/{name}")
+    public ResponseEntity<Referee> findRefereeById(@PathVariable long id,@PathVariable String name) {
+        Optional<Referee> referee = refereeService.findRefereeById(id,name);
         return referee.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Referee> updateReferee(@PathVariable long id, @RequestBody Referee refereeDetails) {
+    @PutMapping("/{id}/{name}")
+    public ResponseEntity<Referee> updateReferee(@PathVariable long id,@PathVariable String name, @RequestBody Referee refereeDetails) {
         try {
-            Referee updatedReferee = refereeService.updateReferee(id, refereeDetails);
+            Referee updatedReferee = refereeService.updateReferee(id,name, refereeDetails);
             return new ResponseEntity<>(updatedReferee, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRefereeById(@PathVariable long id) {
-        refereeService.deleteRefereeById(id);
+    @DeleteMapping("/{id}/{name}")
+    public ResponseEntity<Void> deleteRefereeById(@PathVariable long id,@PathVariable String name) {
+        refereeService.deleteRefereeById(id,name);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

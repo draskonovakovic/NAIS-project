@@ -5,7 +5,6 @@ import rs.ac.uns.acs.nais.ColumnarDatabaseService.entity.Referee;
 import rs.ac.uns.acs.nais.ColumnarDatabaseService.repository.RefereeRepository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 
 @Service
@@ -18,12 +17,12 @@ public class RefereeService {
         return refereeRepository.save(referee);
     }
 
-    public Optional<Referee> findRefereeById(long id) {
-        return refereeRepository.findById(id);
+    public Optional<Referee> findRefereeById(long id, String name) {
+        return refereeRepository.findRefereeByIdAndName(id,name);
     }
 
-    public Referee updateReferee(long id, Referee refereeDetails) {
-        return refereeRepository.findById(id).map(referee -> {
+    public Referee updateReferee(long id, String name, Referee refereeDetails) {
+        return refereeRepository.findRefereeByIdAndName(id,name).map(referee -> {
             referee.setEmail(refereeDetails.getEmail());
             referee.setName(refereeDetails.getName());
             referee.setSurname(refereeDetails.getSurname());
@@ -33,7 +32,7 @@ public class RefereeService {
         }).orElseThrow(() -> new RuntimeException("Referee not found with id " + id));
     }
 
-    public void deleteRefereeById(long id) {
-        refereeRepository.deleteById(id);
+    public void deleteRefereeById(long id,String name) {
+        refereeRepository.deleteRefereeByIdAndName(id,name);
     }
 }

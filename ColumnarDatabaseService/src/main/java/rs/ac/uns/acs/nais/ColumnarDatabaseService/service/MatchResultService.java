@@ -20,20 +20,20 @@ public class MatchResultService {
         return matchResultRepository.save(matchResult);
     }
 
-    public Optional<MatchResult> findMatchResultById(long id) {
-        return matchResultRepository.findById(id);
+    public Optional<MatchResult> findMatchResultById(long id,long matchId,long winnerId) {
+        return matchResultRepository.findMatchResultByIdAndMatchIdAndWinnerId(id,matchId,winnerId);
     }
 
     public List<MatchResult> findAll() {
         return matchResultRepository.findAll();
     }
 
-    public void deleteMatchResultById(long id) {
-        matchResultRepository.deleteById(id);
+    public void deleteMatchResultById(long id,long matchId,long winnerId) {
+        matchResultRepository.deleteMatchResultByIdAndMatchIdAndWinnerId(id,matchId,winnerId);
     }
 
-    public MatchResult updateMatchResult(long id, MatchResult matchResultDetails) {
-        return matchResultRepository.findById(id).map(matchResult -> {
+    public MatchResult updateMatchResult(long id,long matchId,long winnerId, MatchResult matchResultDetails) {
+        return matchResultRepository.findMatchResultByIdAndMatchIdAndWinnerId(id,matchId,winnerId).map(matchResult -> {
             matchResult.setMatchId(matchResultDetails.getMatchId());
             matchResult.setWinnerId(matchResultDetails.getWinnerId());
             matchResult.setHomeTeamScore(matchResultDetails.getHomeTeamScore());

@@ -17,33 +17,33 @@ public class PlayerController {
     private PlayerService playerService;
 
     @PostMapping
-    public ResponseEntity<Player> createTeam(@RequestBody Player player) {
+    public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
         Player savedTeam = playerService.save(player);
         return ResponseEntity.ok(savedTeam);
     }
 
     @GetMapping
-    public ResponseEntity<List<Player>> getAllTeams() {
+    public ResponseEntity<List<Player>> getAllPlayers() {
         List<Player> teams = playerService.findAll();
         return ResponseEntity.ok(teams);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Player> getTeamById(@PathVariable long id) {
-        Optional<Player> team = playerService.findById(id);
+    @GetMapping("/{id}/{teamId}")
+    public ResponseEntity<Player> getPlayerById(@PathVariable long id,@PathVariable long teamId) {
+        Optional<Player> team = playerService.findById(id,teamId);
         return team.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTeam(@PathVariable long id) {
-        playerService.deleteById(id);
+    @DeleteMapping("/{id}/{teamId}")
+    public ResponseEntity<Void> deletePlayer(@PathVariable long id,@PathVariable long teamId) {
+        playerService.deleteById(id,teamId);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Player> updatePlayer(@PathVariable long id, @RequestBody Player playerDetails) {
+    @PutMapping("/{id}/{teamId}")
+    public ResponseEntity<Player> updatePlayer(@PathVariable long id,@PathVariable long teamId, @RequestBody Player playerDetails) {
         try {
-            Player updatedPlayer = playerService.updatePlayer(id, playerDetails);
+            Player updatedPlayer = playerService.updatePlayer(id,teamId, playerDetails);
             return new ResponseEntity<>(updatedPlayer, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -18,8 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
+
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
@@ -52,16 +51,16 @@ public class TeamService {
         return teamRepository.findAll();
     }
 
-    public Optional<Team> findById(long id) {
-        return teamRepository.findById(id);
+    public Optional<Team> findById(long id,String name) {
+        return teamRepository.findTeamByIdAndName(id,name);
     }
 
-    public void deleteById(long id) {
-        teamRepository.deleteById(id);
+    public void deleteById(long id, String name) {
+        teamRepository.deleteTeamByIdAndName(id,name);
     }
 
-    public Team updateTeam(long id, Team teamDetails) {
-        return teamRepository.findById(id).map(team -> {
+    public Team updateTeam(long id,String name, Team teamDetails) {
+        return teamRepository.findTeamByIdAndName(id,name).map(team -> {
             team.setName(teamDetails.getName());
             team.setCity(teamDetails.getCity());
             team.setCountry(teamDetails.getCountry());
