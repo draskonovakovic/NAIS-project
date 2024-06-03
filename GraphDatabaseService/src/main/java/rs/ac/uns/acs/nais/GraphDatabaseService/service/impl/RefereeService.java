@@ -75,4 +75,9 @@ public class RefereeService implements IRefereeService {
     public List<Referee> recommendRefereesByAvgAttendaceOnMatch(Long matchId) {
         return refereeRepository.recommendRefereesByAvgAttendaceOnMatch(matchId);
     }
+
+    @Override
+    public void updateRefereed(Long refereeId, Long matchId, int points, boolean isRisk) {
+        refereeRepository.updateRefereed(refereeId, matchId, points, isRisk);
+    }
 }

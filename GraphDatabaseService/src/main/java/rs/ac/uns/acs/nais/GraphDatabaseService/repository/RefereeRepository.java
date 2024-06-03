@@ -16,6 +16,10 @@ public interface RefereeRepository extends Neo4jRepository<Referee, Long> {
             "            SET refereed.points = $points, refereed.isRisk = $isRisk")
     void createRefereed(Long refereeId, Long matchId, int points, boolean isRisk);
 
+    @Query("MATCH (r:Referee {idOriginal: $refereeId})-[ref:REFEREED]->(m:Match {id: $matchId}) " +
+       "SET ref.points = $points, ref.isRisk = $isRisk")
+    void updateRefereed(Long refereeId, Long matchId, int points, boolean isRisk);
+
     @Query("MATCH (currentMatch:Match {id: $matchId, matchDay: $matchDay}) " +
             "MATCH (referee:Referee)-[:REFEREED]->(previousMatch:Match) " +
             "WHERE previousMatch.matchDay < currentMatch.matchDay " +
